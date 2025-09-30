@@ -9,5 +9,7 @@ namespace PrimerParcialDLJAPI.Data
             : base(options) { }
 
         public DbSet<SupportTicket> SupportTickets { get; set; }
+        public DbSet<Product> Products { get; set; }
+
     }
 }
