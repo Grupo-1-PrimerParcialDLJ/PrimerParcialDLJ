@@ -1,0 +1,6 @@
+@PrimerParcialDLJAPI_HostAddress = http://localhost:5171
+
+GET {{PrimerParcialDLJAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
