@@ -10,23 +10,23 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddHealthChecks();
+builder.Services.AddHealthChecks(); // Para el endpoint /ping
 
 var app = builder.Build();
 
 // === Middleware ===
-// El enunciado dice: "dejarlo accesible en el API desplegada"
-// Así que habilitamos Swagger en TODO entorno (incluso producción)
+// El enunciado exige: "dejarlo accesible en el API desplegada"
+// Por eso Swagger se habilita SIN condición (funciona en Azure)
 app.UseSwagger();
 app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
 app.UseAuthorization();
 
-// Health check accesible
+// Health check accesible en /ping
+app.MapHealthChecks("/ping");
 
-
-// Controladores
+// Controladores de la API
 app.MapControllers();
 
 app.Run();
