@@ -22,6 +22,8 @@ namespace PrimerParcialDLJAPI.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+
+            modelBuilder.Entity("PrimerParcialDLJAPI.Models.SupportTicket", b =>
             modelBuilder.Entity("PrimerParcialDLJAPI.Models.Product", b =>
                 {
                     b.Property<int>("Id")
@@ -30,32 +32,71 @@ namespace PrimerParcialDLJAPI.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
 
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
+                    // SupportTickets
+b.Property<int>("Id")
+    .ValueGeneratedOnAdd()
+    .HasColumnType("int");
 
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
+b.Property<string>("AssignedTo")
+    .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+b.Property<DateTime?>("ClosedAt");
 
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
+b.Property<DateTime>("CreatedAt")
+    .HasColumnType("datetime2");
 
-                    b.Property<int>("Stock")
-                        .HasColumnType("int");
+b.Property<string>("Description")
+    .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime2");
+b.Property<DateTime>("OpenedAt")
+    .HasColumnType("datetime2");
 
-                    b.HasKey("Id");
+b.Property<string>("RequesterEmail")
+    .IsRequired()
+    .HasColumnType("nvarchar(max)");
 
-                    b.ToTable("Products");
+b.Property<string>("Severity")
+    .IsRequired()
+    .HasColumnType("nvarchar(max)");
+
+b.Property<string>("Status")
+    .IsRequired()
+    .HasColumnType("nvarchar(max)");
+
+b.Property<string>("Subject")
+    .IsRequired()
+    .HasMaxLength(200)
+    .HasColumnType("nvarchar(200)");
+
+b.HasKey("Id");
+b.ToTable("SupportTickets");
+
+// Products
+b.Property<int>("Id")
+    .ValueGeneratedOnAdd()
+    .HasColumnType("int");
+
+b.Property<bool>("IsActive")
+    .HasColumnType("bit");
+
+b.Property<string>("Name")
+    .IsRequired()
+    .HasMaxLength(100)
+    .HasColumnType("nvarchar(100)");
+
+b.Property<decimal>("Price")
+    .HasColumnType("decimal(18,2)");
+
+b.Property<int>("Stock")
+    .HasColumnType("int");
+
+b.Property<DateTime?>("UpdatedAt")
+    .HasColumnType("datetime2");
+
+b.HasKey("Id");
+b.ToTable("Products");
+
                 });
 #pragma warning restore 612, 618
         }
